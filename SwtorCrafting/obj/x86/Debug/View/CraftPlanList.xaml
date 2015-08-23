@@ -1,0 +1,67 @@
+﻿<Page
+    x:Class="SwtorCrafting.View.CraftPlanList"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SwtorCrafting.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Panneau Titre -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0">
+            	<Run Text="Swtor Crafting"/>
+            	<LineBreak/>
+            	<Run/>
+            </TextBlock>
+            <TextBlock Text="Craft Plans" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <!--TODO: le contenu doit être placé dans la grille suivante-->
+        <Grid Grid.Row="1" x:Name="ContentRoot">
+            <GridView x:ConnectionId='1' Height="460" 
+                      VerticalAlignment="Top"
+                      x:Name="myCraftPlanList"
+                      ItemsSource="{Binding}"
+                      Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                                                                                         
+                      >
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Height="100" 
+                                Width="100"
+                                    HorizontalAlignment="Center">
+                            <Rectangle x:Name="placeholderRectangle" 
+                                   Fill="Red"
+                                   Opacity="0"/>
+                            <TextBlock x:Name="itemNameBlock" 
+                                   Text="{Binding ItemName}" 
+                                   Foreground="Yellow"/>
+                            <TextBlock x:Name="itemRarityNameBlock" 
+                                   Text="{Binding ItemRarityName}" 
+                                   Foreground="Aqua"/>
+                            <TextBlock x:Name="itemTypeNameBlock" 
+                                   Text="{Binding ItemTypeName}" 
+                                   Foreground="Gray"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </Grid>
+    </Grid>
+</Page>
+
